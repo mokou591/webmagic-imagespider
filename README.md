@@ -1,3 +1,4 @@
 # webmagic-imagespider
-web images spider using webmagic
-can crawl pictures.
+web images spider<br>
+using webmagic framework<br>
+can crawl pictures
