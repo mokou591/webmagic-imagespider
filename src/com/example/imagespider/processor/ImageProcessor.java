@@ -12,7 +12,7 @@ import com.example.imagespider.util.ImageDownloadUtil;
  */
 public class ImageProcessor implements PageProcessor {
 
-	private Site site = Site.me().setRetryTimes(3).setSleepTime(1000)
+	private Site site = Site.me().setRetryTimes(10).setSleepTime(1000)
 			.addHeader("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6");
 
 	private String savePath;

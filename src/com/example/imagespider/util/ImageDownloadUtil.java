@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,6 +26,12 @@ public class ImageDownloadUtil {
 	public void downLoadImage(String url, String savePath) {
 		String filePath = savePath;
 		String fileName = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("."));
+		try {
+			//转为utf-8编码
+			fileName = URLDecoder.decode(fileName,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		String picType = url.substring(url.lastIndexOf(".") + 1);
 		downLoadImage(url, filePath, fileName, picType);
 	}
@@ -41,7 +49,7 @@ public class ImageDownloadUtil {
 		System.out.println("pic url:" + url);
 		String fullPath = filePath + File.separator + fileName + "." + picType;
 		File file = new File(fullPath);
-		if (file.exists() && file.length() > 0) {
+		if (file.exists() && file.length() > 1000) {
 			// 如果图片已经存在则不再下载
 			return;
 		}

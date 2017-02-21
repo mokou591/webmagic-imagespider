@@ -18,9 +18,11 @@ import us.codecraft.webmagic.pipeline.Pipeline;
 public class ImagePipeline implements Pipeline {
 
 	private String savePath = "";
+	private int picDownloadThread;
 
-	public ImagePipeline(String savePath) {
+	public ImagePipeline(String savePath, int picDownloadThread) {
 		this.savePath = savePath;
+		this.picDownloadThread = picDownloadThread;
 		File rootPath = new File(savePath);
 		rootPath.mkdirs();
 	}
@@ -31,8 +33,8 @@ public class ImagePipeline implements Pipeline {
 		Set<String> picUrlSet = (Set<String>) resultItems.get(Content.PICTURE_URL.toString());
 		// 创建爬虫来下载图片
 		Spider spider = Spider.create(new ImageProcessor(savePath));
-		// 同时下载图片的线程数
-		spider.thread(10);
+		// 下载图片的线程数
+		spider.thread(picDownloadThread);
 		// 添加纯图片网址
 		for (String picUrl : picUrlSet) {
 			spider.addUrl(picUrl);
