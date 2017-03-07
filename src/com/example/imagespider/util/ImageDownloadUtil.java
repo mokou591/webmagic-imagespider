@@ -25,14 +25,19 @@ public class ImageDownloadUtil {
 	 */
 	public void downLoadImage(String url, String savePath) {
 		String filePath = savePath;
-		String fileName = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("."));
+		// TODO , url.lastIndexOf(".")
+		String fileName = url.substring(url.lastIndexOf("/") + 1);
 		try {
-			//转为utf-8编码
-			fileName = URLDecoder.decode(fileName,"UTF-8");
+			// 转为utf-8编码
+			fileName = URLDecoder.decode(fileName, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		String picType = url.substring(url.lastIndexOf(".") + 1);
+		// 如果不能正确获取图片格式则设置一个默认格式
+		if (picType.contains("/") || picType.length()>=5) {
+			picType = "png";
+		}
 		downLoadImage(url, filePath, fileName, picType);
 	}
 
