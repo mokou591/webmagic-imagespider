@@ -14,7 +14,7 @@ public class WallhavenSpider {
 		spider.addPipeline(new ImagePipeline(savePath,picDownloadThread));
 		// 添加了几个搜索页面
 		for (int i = 1; i <= 5; ++i) {
-			spider.addUrl("https://alpha.wallhaven.cc/search?q=youmu&categories=010&page=" + i);
+			spider.addUrl("https://alpha.wallhaven.cc/search?q=shimakaze&categories=010&page=" + i);
 		}
 		// 启动
 		spider.start();
